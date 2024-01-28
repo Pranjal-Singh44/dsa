@@ -34,7 +34,7 @@ main()
                 n++;
                 for(i=n-1;i>=pos;i--)
                 {
-                    (arr+i)=(arr+i-1);
+                    *(arr+i)=*(arr+i-1);
                 }
                 *(arr+pos-1)=x;
                 printf("The updated array is\n ");
@@ -50,7 +50,7 @@ main()
                 scanf("%d",&pos);
                 for(i=pos;i<=n-1;i++)
                 {
-                    (arr+i-1)=(arr+i);
+                    *(arr+i-1)=*(arr+i);
                 }
                 n--;
                 printf("the updated array is\n");
