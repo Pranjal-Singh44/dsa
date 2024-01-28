@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include<stdlib.h>
+main()
+{
+    int *arr;
+    int n,i,x,key,pos,choice,found=0;
+    printf("Enter the no of elements in the array");
+    scanf("%d",&n);
+    arr=(int*)(malloc)(n*sizeof(int));
+    printf("Enter array elements\n");
+    
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",(arr+i));
+        }
+    printf("The array elements are\n");
+    for(i=0;i<n;i++)
+    {
+        printf("(arr+%d) =%d",i,*(arr+i));
+    }
+    while(1)
+    {
+        printf("Enter 1 for insert\nEnter 2 for delete\nEnter 3 for search\nEnter 4 for exit");
+        printf("Enter your choice");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            {
+                printf("Enter the element to be inserted");
+                scanf("%d",&x);
+                printf("Enter the position of the element");
+                scanf("%d",&pos);
+                n++;
+                for(i=n-1;i>=pos;i--)
+                {
+                    (arr+i)=(arr+i-1);
+                }
+                *(arr+pos-1)=x;
+                printf("The updated array is\n ");
+                for(i=0;i<n;i++)
+                {
+                    printf("(arr+%d) =%d",i,*(arr+i));
+                }
+            }
+            break;
+            case 2:
+            {
+                printf("Enter the position of the element");
+                scanf("%d",&pos);
+                for(i=pos;i<=n-1;i++)
+                {
+                    (arr+i-1)=(arr+i);
+                }
+                n--;
+                printf("the updated array is\n");
+                for(i=0;i<n;i++)
+                {
+                    printf("(arr+%d)= %d",i,*(arr+i));
+                }
+
+            }
+            break;
+            case 3:
+            {
+                printf("Enter the key to be found");
+                scanf("%d",&key);
+                for(i=0;i<n;i++)
+                {
+                    if(*(arr+i)==key)
+                    {
+                        found=1;
+                        printf("Key found at index %d",i+1);
+                    }
+                }
+                if(found==0)
+                {
+                    printf("Key not found");
+                }
+            }
+            break;
+            case 4:
+            exit(1);
+        }
+    }
+}
