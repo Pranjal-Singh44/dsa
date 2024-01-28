@@ -1,0 +1,112 @@
+#include<stdio.h>
+#include<stdlib.h>
+main()
+{
+    int *A[3],*B[3],*C[3];
+    int m,n,i,j,k,p,q,sum,choice;
+    printf("Enter the order of matrix 1");
+    scanf("%d %d",&m,&n);
+    printf("Enter the order of matrix 2");
+    scanf("%d %d",&p,&q);
+    for(i=0;i<m;i++)
+    {
+        A[i]=(int*)(malloc)(n*sizeof(int));
+    }
+    for(i=0;i<p;i++)
+    {
+        B[i]=(int*)(malloc)(q*sizeof(int));
+    }
+    printf("ENter the elements of matrix1");
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            scanf("%d",A[i]+j);
+        }
+    }
+    printf("Enter the elements of matrix2");
+    for(i=0;i<p;i++)
+    {
+        for(j=0;j<q;j++)
+        {
+            scanf("%d",B[i]+j);
+        }
+    }
+    while(1)
+    {
+        printf("Enter 1 for Matrix Addition and 2 for Matrix Multiplication and 3 for exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            {
+                for(i=0;i<m;i++)
+                {
+                    C[i]=(int*)(malloc)(n*sizeof(int));
+                }
+                for(i=0;i<m;i++)
+                {
+                    for(j=0;j<n;j++)
+                    {
+                        (C[i]+j)=(A[i]+j)+*(B[i]+j);
+
+                    }
+
+                }
+                printf("The sum of the array is\n ");
+                
+                for(i=0;i<m;i++)
+
+                {
+                    for(j=0;j<n;j++)
+                    {
+                        printf("\t%d",*(C[i]+j));
+                    }
+                    printf("\n");
+                }
+            }
+            break;
+            case 2:
+            {
+                if(n!=p)
+                {
+                    printf("MAtrix Multiplication not possible");
+                }
+                for(i=0;i<p;i++)
+                {
+                    C[i]=(int*)(malloc)(q*sizeof(int));
+                }
+                for(i=0;i<m;i++)
+                {
+                    for(j=0;j<p;j++)
+                    {
+                        *(C[i]+j)=0;
+                        for(k=0;k<n;k++)
+                        {
+                            (C[i]+j)+=((A[i]+k))  *   (*(B[k]+j));
+                        }
+                    
+                }
+
+            }
+            printf("MULTIPLICATION RESULT\n");
+            for(i=0;i<n;i++)
+            {
+                for(j=0;j<q;j++)
+                {
+                  printf("\t%d",*(C[i]+j));
+                }
+                printf("\n");
+            }
+
+
+        }
+        break;
+        case 3:
+        {
+            exit(1);
+        }
+        
+    }
+ }
+}
